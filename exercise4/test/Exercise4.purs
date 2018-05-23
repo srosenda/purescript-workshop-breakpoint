@@ -222,8 +222,11 @@ type User =
   { firstName :: String
   , lastName :: String }
 
+showUser :: User -> String
+showUser {firstName, lastName} = firstName <> " " <> lastName
+
 sayHi :: User -> String
-sayHi _ = "fixme"
+sayHi user = "Hey there, " <> showUser user <> "!"
 
 mergeUserIds :: Array Int -> Array Int -> Array Int
 mergeUserIds ids1 ids2 = []
