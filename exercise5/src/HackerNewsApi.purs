@@ -18,7 +18,9 @@ type Story =
   , objectID :: String
   , points :: Int
   , title :: String
-  , url :: String }
+  , url :: String
+  , author :: String
+  , num_comments :: Int }
 
 hackerNewsApi :: String
 hackerNewsApi = "https://hn.algolia.com/api/v1/search"

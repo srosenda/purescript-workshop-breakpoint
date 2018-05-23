@@ -18,7 +18,8 @@ import Pux.DOM.HTML (HTML)
 import Pux.DOM.HTML.Attributes (key, style)
 import Pux.Renderer.React (renderToDOM)
 import Signal (constant)
-import Text.Smolder.HTML (div, h1, span)
+import Text.Smolder.HTML (div, h1, span, a)
+import Text.Smolder.HTML.Attributes (href)
 import Text.Smolder.Markup (text, (!), (#!))
 
 data Event
@@ -89,8 +90,12 @@ storySort ByScore {points: points1} {points: points2} = points2 `compare` points
 storyItem :: Story -> HTML Event
 storyItem story =
   div ! style (marginBottom (px 5.0)) ! key story.objectID $ do
-    text story.objectID
+    a ! href story.url $ text story.title
     div do
+      div ! style Styles.author $ text story.author
+      divider
+      div ! style Styles.numComments $ text (show story.num_comments <> " comments")
+      divider
       div ! style Styles.points $ text (show story.points <> " points")
       divider
       div ! style Styles.date $ text (formatTime story.created_at)
